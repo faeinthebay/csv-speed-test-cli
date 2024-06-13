@@ -221,37 +221,14 @@ function logUploadSpeed(tests) {
 }
 
 async function speedTest() {
-  const [ping, serverLocationData, { ip, loc, colo }] = await Promise.all([measureLatency(), fetchServerLocationData(), fetchCfCdnCgiTrace()]);
+  const datetime = new Date();
+  const [ping, { ip, loc, colo }] = await Promise.all([measureLatency(), fetchCfCdnCgiTrace()]);
 
-  const city = serverLocationData[colo];
-  logInfo("Server location", `${city} (${colo})`);
-  logInfo("Your IP", `${ip} (${loc})`);
+  // 5 megabytes is sufficient for 0.66 megabits per second
+  const testDown5mbytes = await measureDownload(5001000, 1);
+  const testUp5mbytes = await measureUpload(5001000, 1);
 
-  logLatency(ping);
-
-  const testDown1 = await measureDownload(101000, 10);
-  logSpeedTestResult("100kB", testDown1);
-
-  const testDown2 = await measureDownload(1001000, 8);
-  logSpeedTestResult("1MB", testDown2);
-
-  const testDown3 = await measureDownload(10001000, 6);
-  logSpeedTestResult("10MB", testDown3);
-
-  const testDown4 = await measureDownload(25001000, 4);
-  logSpeedTestResult("25MB", testDown4);
-
-  const testDown5 = await measureDownload(100001000, 1);
-  logSpeedTestResult("100MB", testDown5);
-
-  const downloadTests = [...testDown1, ...testDown2, ...testDown3, ...testDown4, ...testDown5];
-  logDownloadSpeed(downloadTests);
-
-  const testUp1 = await measureUpload(11000, 10);
-  const testUp2 = await measureUpload(101000, 10);
-  const testUp3 = await measureUpload(1001000, 8);
-  const uploadTests = [...testUp1, ...testUp2, ...testUp3];
-  logUploadSpeed(uploadTests);
+  console.log("%s, %s, %s, %d, %d, %d", datetime.toISOString(), colo, ip, ping[0], testDown5mbytes[0], testUp5mbytes[0]);
 }
 
 speedTest();

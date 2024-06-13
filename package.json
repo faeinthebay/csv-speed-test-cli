@@ -1,7 +1,7 @@
 {
-  "name": "speed-cloudflare-cli",
-  "version": "2.0.3",
-  "description": "Measure the speed and consistency of your internet connection using speed.cloudflare.com",
+  "name": "csv-speed-test-cli",
+  "version": "3.0.0",
+  "description": "Measure your internet connection using speed.cloudflare.com and output results as CSV ",
   "main": "cli.js",
   "bin": {
     "speed-cloudflare-cli": "./cli.js"
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KNawm/speed-cloudflare-cli.git"
+    "url": "git+https://github.com/faeinthebay/csv-speed-test-cli.git"
   },
   "keywords": [
     "bandwidth",
@@ -26,12 +26,12 @@
     "test",
     "upload"
   ],
-  "author": "Tomás Arias <hi@tomasarias.me>",
+  "author": "Fae LeDawson <offers@andrewiam.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/KNawm/speed-cloudflare-cli/issues"
+    "url": "https://github.com/faeinthebay/csv-speed-test-cli/issues"
   },
-  "homepage": "https://github.com/KNawm/speed-cloudflare-cli#readme",
+  "homepage": "https://github.com/faeinthebay/csv-speed-test-cli#readme",
   "devDependencies": {
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
